@@ -1,0 +1,51 @@
+
+
+Creation network :
+docker create network ntwdo
+
+Adminer :
+docker run -d --name adminerc -e AUTHOR="Dorian" -p 8080:8080 --network ntwdo  adminer
+
+BDD:
+docker run -d --name BDD -e AUTHOR="Dorian" -p 8075:8075 --network ntwdo bd
+
+-p 
+avec les port utilisé
+(à gauche port machine hote à droite port conteneur)
+
+--network
+après avoir créé le network (voir plus haut) on met le conteneur dedans
+
+--name
+reference pour le container (utilisé pour s'y connecter)
+
+Gestion creation tables dans BDD
+ajout des lignes suivantes après avoir créé les fichier (suivant le tp)
+COPY ./CreateScheme.sql ./docker-entrypoint-initdb.d
+COPY ./InsertData.sql ./docker-entrypoint-initdb.d
+
+/!\ Ici pas de pb mais il faut faire attention à l'ordre des fichier (alphabetique) 
+il faut que la création se fasse avant le remplissage on peut donc ajouter un nombre en début de fichier pour s'assurer du bon fonctionnement.
+
+Persist data :
+Ajouter la persitence des données dans /tmp/data sur la machine host
+
+on relance donc la BDD avec la commande suivante
+docker run -d --name BDD -e AUTHOR="Dorian" -v /tmp/data:/var/lib/postgresql/data -p 8075:8075 --network ntwdo bd
+
+-v
+permet de specifier un repertoir lié coté machine host : coté container
+(effet transparent si on ajoute un element dans la bd et que on la stoppe, quand elle redémarrera l'element sera toujours la)
+
+
+BACKEND
+on créé le ficher Main.java
+
+
+ajout des lignes suivantes dans un nouveau Dockerfile pour permettre de transmettre le ficher java précedement créé + build + compile
+COPY Main.java /src/
+RUN javac /src/Main.java
+CMD java /src/Main.java
+
+lancement avec la ligne suivante
+docker run --name java -e AUTHOR="Dorian"

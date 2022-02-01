@@ -78,5 +78,72 @@ COPY ./src/ /usr/local/apache2/htdocs/
 on lance avec :
 docker run --name apache -p 8050:80 --network ntwdo -e AUTHOR="Dorian" apachei
 
+REVERSE PROXY
+On recupère le fichier de config avec 
+docker run --rm httpd:2.4 cat /usr/local/apache2/conf/httpd.conf > my-httpd.conf
+
+on ajoute les lignes données dans le TP dans le fichier de config
+<VirtualHost *:80>
+    ProxyPreserveHost On
+    ProxyPass / http://sapicbd:8080/
+    ProxyPassReverse / http://sapicbd:8080/
+</VirtualHost>
+
+et on ajoute cette ligne au Dockerfile pour permettre la copie de la conf faite sur le container
+COPY ./my-httpd.conf /usr/local/apache2/conf/httpd.conf
+
+
+on relance l'api et apache
+docker run -d --name sapicbd -p 8080:8080 --network ntwdo -e AUTHOR="Dorian" sapibd
+docker run -d --name apache -p 80:80 --network ntwdo -e AUTHOR="Dorian" apachei
+et on accède via l'adresse localhost
+
+on créé un docker-compose.yml que l'on complete comme suis (suivant les dépendances et noms de fichiers)
+version: '3.3'
+services:
+  sapibd:
+    build:
+      ./backend/simple-api-main/simple-api/
+    networks:
+      - ntwdo
+    depends_on:
+      - bd
+
+  bd:
+    build:
+      ./database/
+    networks:
+      - ntwdo
+
+  apachei:
+    build:
+      ./frontend/
+    ports:
+      - 80:80
+    networks:
+      - ntwdo
+    depends_on:
+      - sapibd
+
+networks:
+  ntwdo: 
+
+on utilise ensuite la commande suivante pour build l'ensemble
+docker-compose build
+
+et run
+docker-compose up
+
+
+PUBLISH
+commande suivante pour publish une image
+docker tag sapibd dorianmat/sapibd:1.0
+
+commande suivante pour push la publication
+docker push dorianmat/sapibd:1.0
+
+
+
+
 
 

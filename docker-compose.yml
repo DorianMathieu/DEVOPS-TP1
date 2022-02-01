@@ -1,0 +1,30 @@
+version: '3.3'
+services:
+  sapibd:
+    build:
+      ./backend/simple-api-main/simple-api/
+    networks:
+      - ntwdo
+    depends_on:
+      - bd
+    volumes:
+     - /tmp/data:/var/lib/postgresql/data
+
+  bd:
+    build:
+      ./database/
+    networks:
+      - ntwdo
+
+  apachei:
+    build:
+      ./frontend/
+    ports:
+      - 80:80
+    networks:
+      - ntwdo
+    depends_on:
+      - sapibd
+
+networks:
+  ntwdo: 

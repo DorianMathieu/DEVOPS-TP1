@@ -1,0 +1,323 @@
+
+/*GENERAL*/
+body{
+    background-image: url('../images/Fond_carte.jpg');
+	background-attachment:fixed;
+    text-align: center;
+    margin : 0;
+    /*box-sizing: border-box;*/
+    /*margin-left:5%;*/
+}
+
+.clearfix {
+    overflow: auto;
+  }
+
+#header {
+    height:auto;
+
+    display: flex; /*box>a gauche*/
+    align-items: center;
+
+    text-shadow: 0 0 3px #ffffff;
+   
+    background: none rgb(250, 250, 250,0.9);
+    box-shadow : 0px 4px 4px #1c1a19;
+
+    padding-left : 15px;
+    padding-top : 15px;
+    padding-right: 15px;
+    padding-bottom: 15px;
+   
+}
+
+#footer { 
+    box-shadow : 0px 4px 4px #1c1a19;
+    background: none rgba(1, 46, 77, 0.514);
+    /*border-radius : 5px;*/
+    color : white;
+    padding : 10px;
+}
+
+a:link 
+{ 
+ text-decoration:none; 
+}
+
+/*HeaDer*/
+#TitreNlogo{
+    display: flex;
+    align-items: center;
+}
+
+.TitreM{
+    font-family: "Lucida Console", "Courier New", monospace;
+    font-weight: bold;
+    font-variant: small-caps;
+    font-size: 35px;
+   
+    text-shadow: 2px 2px 5px red;
+    text-decoration: overline;
+    width : 40vw;
+}
+
+#LiensNav{
+    text-shadow: 2px 2px 5px whitesmoke;
+    text-decoration: underline;
+    
+    float:right;
+}
+
+/*Body destinations*/
+.box-destination {/*Boites avec une destination+text +effet*/
+    opacity: 1;
+    /*position: relative;*/
+    display: flex;
+    justify-content: space-between;
+    
+    /*text-align: center;*/
+    width: 55vw;
+    height :30vw;
+    /*background-color: #fff;*/
+    overflow : hidden;
+    /*
+    border-radius: 5px;
+    box-shadow: 0 1px 2px rgba(0, 126, 243, 0.1);
+    border-radius: 5px;
+    */
+    -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+
+.box-destination::after {
+    content :'';
+    border-radius: 5px;
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 90%;
+    box-shadow: 0 5px 5px rgba(0, 132, 255, 0.3);
+    opacity: 0;
+    background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 100%);
+    -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.box-destination-text{
+    padding-right:8%;
+    display: flex;
+    opacity: 0;
+
+}
+
+.box-destination:hover>.box-destination-text{
+    opacity: 1;
+}
+
+.box-destination:hover {
+    opacity: 1;
+    -webkit-transform: scale(1.09, 1.09);
+    transform: scale(1.09, 1.09);
+    width:88vw ;
+
+}
+
+.box-destination:hover::after {
+    opacity: 1;
+}
+
+.blabla_desti{
+    /*display: flex;*/
+    opacity: 0;
+}
+
+.box-destination:hover .blabla_desti{
+    opacity: 1;
+}
+
+h5{
+    padding: 5px;
+    font-family: "Lucida Console", "Courier New", monospace;
+    font-size: 20px;
+    color:white;
+    text-decoration: overline underline;
+}
+
+h2{
+    font-family: "Courier New";
+    color: white;
+}
+
+
+/*Gestions Images*/
+.imagelogo{/*Permet le scale auto des images en fonction de la résolution*/
+    width: 6vw;
+    min-width: 65px;
+    height: auto;
+    float :left;
+    /*vertical-align: center;*/
+    clear:left;
+}
+
+.imageDestination{ /*Permet le scale auto des images en fonction de la résolution*/
+    /*width: 90vw;*/
+    /*background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 100%);
+    width: fit-content;*/
+    height: 85%;
+    padding-left : 2%;
+    /*background-image:  url("../images/Degradefd.png") , url("../images/Londre.jpg") ;*/
+    vertical-align: bottom;
+    /*height: auto;*/
+}
+
+.image_info{
+    box-shadow : 0px 4px 4px #1c1a19;
+    border-radius : 5px;
+    width: 45vw;
+    min-width: 65px;
+    margin:1%;
+}
+
+.imageLien{ /*Permet le scale auto des images en fonction de la résolution*/
+    width: 10vw;
+    min-width: 100px;
+    height: auto;
+    float :right;
+    clear:right;
+}
+
+.imageLien:hover{
+    filter : invert(55%);
+}
+
+/*
+.box { /*Boites avec effet*//*
+    
+    position: relative;
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.box:hover {
+    -webkit-transform: scale(1.25, 1.25);
+    transform: scale(1.25, 1.25);
+}*/
+/*
+  .box-destination:hover::after {
+    opacity: 1;
+}
+
+  .box::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transition: opacity 0.3s ease-in-out;
+}*/
+
+#destination{
+
+    display: grid;
+    grid-template-columns: auto;
+    grid-gap: 40px 50px;
+
+    justify-content: center;
+    grid-template-rows: minmax(100px,auto);
+
+    box-shadow : 0px 4px 4px #1c1a19;
+    box-align: center;
+    
+    border-radius : 5px;
+    padding: 20px;
+    margin-top: 15px;
+}
+
+#template_resa{
+    background-image: url("../images/fond_grise.png");
+    width: 55%;
+    box-shadow : 0px 4px 4px #1c1a19;
+    border-radius : 5px;
+    text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+    color : rgb(251, 255, 190);
+    margin: 0 auto;
+    margin-top: 15px;   
+    margin-bottom: 15px;
+    padding : 1%;
+
+}
+
+#validation_formulaire{
+    width: 55%;
+    box-shadow : 0px 4px 4px #1c1a19;
+    border-radius : 5px;
+    text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+    color : white;
+    background-image: url("../images/fond_grise.png");
+    padding : 10px;
+    margin: 0 auto;
+    margin-top: 15px;   
+    margin-bottom: 15px;
+
+}
+
+#Corps_nous_contacter{
+    padding : 15px;
+    width: 50%;
+    background-image: url("../images/fond_grise.png");
+    box-shadow : 0px 4px 4px #1c1a19;
+    border-radius : 5px;
+    margin :0 auto;
+    margin-top: 15px;
+}
+
+#Informations_contacts{
+    display: flex; /*box>a gauche*/
+    align-items: center;
+    justify-content: space-around;
+    text-shadow: 0 0 3px #ffffff;
+   
+    background: none rgb(250, 250, 250,0.9);
+    box-shadow : 0px 4px 4px #1c1a19;
+}
+
+.Liens_contact{
+    padding: 15px;
+}
+
+#infos_Apropos{
+    display: flex; /*box>a gauche*/
+    align-items: center;
+    justify-content: space-around;
+    text-shadow: 0 0 3px #ffffff;
+   
+    /*background: none rgb(250, 250, 250,0.9);*/
+    box-shadow : 0px 4px 4px #1c1a19;
+    margin: 2%;
+    padding: 2%;
+}
+
+
+#corp_confirmation{
+    padding : 15px;
+    width: 50%;
+    background-image: url("../images/fond_grise.png");
+    box-shadow : 0px 4px 4px #1c1a19;
+    border-radius : 5px;
+    margin : 0 auto;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}

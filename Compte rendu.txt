@@ -49,3 +49,34 @@ CMD java /src/Main.java
 
 lancement avec la ligne suivante
 docker run --name java -e AUTHOR="Dorian"
+
+
+Multistage build
+API ajout d'un ficher GreetingController.java dans un fichier controller dans les dossier de l'API (src/main/java/....)
+
+on récupère le Dockerfile donné
+et on lance avec:
+docker run --name sapic -p 8060:8080 --network ntwdo -e AUTHOR="Dorian" sapi
+on peut maintenant acceder à l'adresse localhost:8060 et voir hello world
+
+BACKEND API
+Ajout de la config (adresse,usr,pwd) dans le fichier .yml
+ url: "jdbc:postgresql://BDD:5432/db"
+    username: usr
+    password: pwd
+
+lancement avec
+docker run --name sapicbd -p 8060:8080 --network ntwdo -e AUTHOR="Dorian" sapibd
+on peut maintenant acceder à l'adresse localhost:8060 et voir les données de la bd en ajoutant dans l'url (API foncitonnelle)
+
+HTTP SERVER
+on recupère le dockerfile indiqué sur le site https://hub.docker.com/_/httpd
+on met dans un fichier src dans le repertoir du html et on l'envoie au docker
+FROM httpd:2.4
+COPY ./src/ /usr/local/apache2/htdocs/
+
+on lance avec :
+docker run --name apache -p 8050:80 --network ntwdo -e AUTHOR="Dorian" apachei
+
+
+
